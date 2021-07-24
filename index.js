@@ -28,10 +28,10 @@ baskom()
         printer.println("");
         const isConnected = await printer.isPrinterConnected();
         if (isConnected) {
-            await printer.execute();
             if (req.query.cd) {
                 printer.openCashDrawer();
             }
+            await printer.execute();
             return "Process print";
         }
         return "Not Connected";
