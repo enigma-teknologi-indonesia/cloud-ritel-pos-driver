@@ -16,7 +16,7 @@ baskom()
     })
     .get("/test-printer", async (req) => {
         const printer = new PrinterThermal({
-            type: PrinterTypes.EPSON,
+            type: PrinterTypes[req.query.type || "EPSON"],
             interface: 'printer:' + req.query.name,
             driver: printerDriver
         });
@@ -29,6 +29,9 @@ baskom()
         const isConnected = await printer.isPrinterConnected();
         if (isConnected) {
             await printer.execute();
+            if (req.query.cd) {
+                printer.openCashDrawer();
+            }
             return "Process print";
         }
         return "Not Connected";
