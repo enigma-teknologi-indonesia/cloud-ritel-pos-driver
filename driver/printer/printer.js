@@ -1,7 +1,5 @@
 var printer_helper = {},
     fs = require("fs"),
-    child_process = require("child_process"),
-    os = require("os"),
     path = require("path"),
     binding_path = path.resolve(__dirname, './node_printer.node'),
     printer_helper;
